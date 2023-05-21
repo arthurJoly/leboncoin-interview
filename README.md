@@ -15,6 +15,7 @@ Tomcat server start on port 8080.
 Example :
 ```
 curl 'http://localhost:8080/fizzBuzz?limit=10&divide1=2&divide2=3&replace1=fizz&replace2=buzz'
+curl 'http://localhost:8080/requests/max'
 ```
 
 ### With Docker
@@ -26,4 +27,5 @@ docker run -p8887:8080 leboncoin-interview:latest
 
 ```
 curl 'http://localhost:8887/fizzBuzz?limit=10&divide1=2&divide2=3&replace1=fizz&replace2=buzz'
+curl 'http://localhost:8887/requests/max'
 ```
