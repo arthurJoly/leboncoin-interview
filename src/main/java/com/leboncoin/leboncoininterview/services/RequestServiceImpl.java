@@ -1,14 +1,18 @@
 package com.leboncoin.leboncoininterview.services;
 
+import com.leboncoin.leboncoininterview.controllers.RequestController;
 import com.leboncoin.leboncoininterview.model.Request;
 import com.leboncoin.leboncoininterview.repository.RequestRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class RequestServiceImpl implements RequestService {
+
+    Logger logger = LoggerFactory.getLogger(RequestService.class);
+
     @Autowired
     private RequestRepository requestRepository;
 
@@ -19,11 +23,13 @@ public class RequestServiceImpl implements RequestService {
             request = new Request(limit, divide1, divide2, replace1, replace2);
         }
         request.setNumberOfRequest(request.getNumberOfRequest() + 1);
+        logger.info("adding request limit {}", request);
         requestRepository.save(request);
     }
 
     @Override
     public Request getMaxRequest() {
+        logger.info("getting max request");
         return requestRepository.findMaxQuery();
     }
 }

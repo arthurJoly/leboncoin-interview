@@ -1,11 +1,17 @@
 package com.leboncoin.leboncoininterview.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FizzBuzzServiceImpl implements FizzBuzzService {
+
+    Logger logger = LoggerFactory.getLogger(FizzBuzzService.class);
+
     @Override
     public String getFizzBuzz(int limit, int divide1, int divide2, String replace1, String replace2) {
+        logger.info("calculating fizz buzz for limit {} divide1 {} divide2 {} replace1 {} replace2 {}", limit, divide1, divide2, replace1, replace2);
         StringBuilder builder = new StringBuilder();
         for(int i = 1; i <= limit; i++) {
             builder.append(getFizzBuzzString(i, divide1, divide2, replace1, replace2));
