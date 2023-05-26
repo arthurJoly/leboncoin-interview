@@ -6,19 +6,24 @@ The output would look like this: "1,2,fizz,4,buzz,fizz,7,8,fizz,buzz,11,fizz,13,
 
 
 ### Prerequisites
-- maven
-- java
-- docker
+- maven 3.9.1
+- java 17
+- docker (optional)
 
 
 ### How to run?
 
+Build with 
+
 ```agsl
 mvn package
-./mvnw spring-boot:run
 ```
 
-or run
+Run with
+```agsl
+./mvnw spring-boot:run
+```
+or 
 ```agsl
 java -jar target/leboncoin-interview-0.0.1-SNAPSHOT.jar
 ```
@@ -31,7 +36,7 @@ curl 'http://localhost:8080/fizzBuzz?limit=10&divide1=2&divide2=3&replace1=fizz&
 curl 'http://localhost:8080/requests/max'
 ```
 
-### With Docker
+#### With Docker
 
 ```agsl
 docker build --tag=leboncoin-interview:latest .
@@ -44,6 +49,6 @@ curl 'http://localhost:8887/requests/max'
 ```
 
 
-### Endpoint
+### Endpoint documentation
 Check api documentation at :
 `http://localhost:8080/swagger-ui/index.html`
