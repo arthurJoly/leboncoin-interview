@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,4 +39,12 @@ public class FizzBuzzController {
         requestService.addRequest(limit, divide1, divide2, replace1, replace2);
         return new ResponseEntity<>(fizzBuzzService.getFizzBuzz(limit, divide1, divide2, replace1, replace2), HttpStatus.OK);
     }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<String> handleMissingParams(MissingServletRequestParameterException ex) {
+        String name = ex.getParameterName();
+        logger.info("missing parameter {}", name);
+        return new ResponseEntity<>(String.format("missing parameter %s", name), HttpStatus.BAD_REQUEST);
+    }
+
 }
